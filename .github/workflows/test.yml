@@ -1,0 +1,33 @@
+name: test
+
+
+on:
+  push:
+      branches:
+          - master
+      paths:
+          - '.github/workflows/**'
+          - '__test__/**'
+          - 'src/**'
+
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@v2
+          - name: Use Node.js
+            uses: actions/setup-node@v2
+            with:
+                node-version: 16
+          - name: print node version
+            run: |
+                node -v
+                npm -v
+
+    test2:
+        runs-on: ubuntu-latest
+        steps:
+          - run: touch a.txt
+          - run: echo 100 > a.txt
+          - run: cat a.txt
